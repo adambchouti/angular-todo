@@ -14,14 +14,14 @@
                 </form>
             </div>
 
-            <div class="empty-todos" *ngIf="todos.length == 0">
+            <div class="empty-todos" *ngIf="todos.size == 0">
                 <img src="../assets/images/i_can_fly.svg" alt="">
                 <h2>All tasks are Completed!</h2>
                 <p>Go have fun outside!</p>
             </div>
 
-            <div class="todos" *ngFor="let todo of todos">
-                <app-todo [todo]="todo" (deleteTodoEvent)="onDelete($event)" (editTodoEvent)="onEdit($event)"></app-todo>
+            <div class="todos" *ngFor="let todo of todos | keyvalue">
+                <app-todo [todo]="todo.value" (deleteTodoEvent)="onDelete($event)" (editTodoEvent)="onEdit($event)"></app-todo>
             </div>
         </mat-card-content>
     </mat-card>

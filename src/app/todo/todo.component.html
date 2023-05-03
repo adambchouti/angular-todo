@@ -1,7 +1,7 @@
 <mat-card class="todo">
     <mat-card-content class="todo-content">
         <div *ngIf="!isEdit">
-            {{ todo.name }}
+            {{ todo.title }}
         </div>
         <div *ngIf="isEdit">
             <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">

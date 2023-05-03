@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Todo } from './model/todo';
+import { Todo } from './todo/todo';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { Todo } from './model/todo';
 })
 export class AppComponent {
   idCounter = 1;
-  todos: Array<Todo> = [];
+  todos: Map<number, Todo> = new Map();
   todoForm: FormGroup;
 
   constructor(
@@ -22,25 +22,16 @@ export class AppComponent {
 
   onSubmit() {
     const { newTodo } = this.todoForm.value;
-    this.todos.push({
-        id: this.idCounter,
-        name: newTodo
-    });
+    this.todos.set(this.idCounter, {id: this.idCounter, title: newTodo});
     this.idCounter++;
     this.todoForm.reset();
   }
 
   onDelete(todoId: number) {
-    const filteredTodos = this.todos.filter(todo => todo.id !== todoId);
-    this.todos = filteredTodos;
+    this.todos.delete(todoId);
   }
 
   onEdit(editTodo: Todo) {
-    this.todos = this.todos.map(todo => {
-        if (todo.id === editTodo.id) {
-            return editTodo;
-        }
-        return todo;
-    });
+    this.todos.set(editTodo.id, editTodo);
   }
 }

@@ -1,25 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Todo } from '../model/todo';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent {
-    @Input() todo: Todo = {id: 1, name: ''};
+export class TodoComponent implements OnInit {
+    @Input() todo!: Todo;
     @Output() deleteTodoEvent = new EventEmitter<number>();
     @Output() editTodoEvent = new EventEmitter<Todo>();
 
     isEdit = false;
-    todoForm: FormGroup;
+    todoForm!: FormGroup;
 
     constructor(
         private fb: FormBuilder
     ) {
+    }
+
+    ngOnInit(): void {
         this.todoForm = this.fb.group({
-            editTodo: ['']
+            editTodo: [this.todo.title]
         })
     }
 
@@ -39,7 +42,7 @@ export class TodoComponent {
         this.onEditTodo();
         const newTodo = {
             id: this.todo.id,
-            name: editTodo
+            title: editTodo
         }
         this.editTodoEvent.emit(newTodo)
     }
