@@ -1,0 +1,22 @@
+<mat-card class="todo">
+    <mat-card-content class="todo-content">
+        <div *ngIf="!isEdit">
+            {{ todo.name }}
+        </div>
+        <div *ngIf="isEdit">
+            <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <input matInput formControlName="editTodo">
+                </mat-form-field>
+            </form>
+        </div>
+        <div>
+            <button (click)="onEditTodo()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="onDeleteTodo()" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </mat-card-content>
+</mat-card>

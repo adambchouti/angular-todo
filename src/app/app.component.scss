@@ -1,0 +1,27 @@
+.container {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 70px;
+
+    .example-card {
+        text-align: center;
+    }
+
+    .card-header {
+        justify-content: center;
+    }
+
+    .card-content {
+        margin-top: 35px;
+
+        .card-input {
+            margin-bottom: 35px;
+        }
+
+        .empty-todos {
+            img {
+                width: 50%;
+            }
+        }
+    }
+}

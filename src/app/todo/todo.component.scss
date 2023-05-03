@@ -1,0 +1,15 @@
+.todo {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.todo-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        margin-left: 10px;
+    }
+}
